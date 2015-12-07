@@ -38,6 +38,21 @@ class ComicDatabase(object):
         except FileNotFoundError:
             print("{filename} not found and could not be created. Exiting.".format(filename=self.comic_db_filename))
 
+    def add_record(self, universe, title, serial):
+        try:
+            connection = sqlite3.connect(self.comic_db_filename)
+
+            record = [universe, title, serial]
+            connection.execute('''
+                        INSERT INTO comics (universe, title, serial) VALUES (?,?,?)
+                        ''', record)
+
+            connection.commit()
+            connection.close()
+            print("{record} was created!".format(record=record))
+        except sqlite3.Error as er:
+            print('SQL Record Failed: ', er.message)
+
     def find_all_records(self):
         connection = sqlite3.connect(self.comic_db_filename)
         c = connection.cursor()

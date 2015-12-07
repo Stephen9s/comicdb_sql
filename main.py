@@ -14,6 +14,14 @@ def main():
     if not fileExists(comic_database.get_comic_database_filename()):
         comic_database.initializeDatabase()
     else:
+
+        add = input("Add record? (y/n): ")
+        if (add == 'y'):
+            universe = input("Universe: ")
+            title = input("Title: ")
+            serial = input("Serial: ")
+            comic_database.add_record(universe, title, serial)
+
         print("Getting all records...")
         all_records = comic_database.find_all_records()
 
