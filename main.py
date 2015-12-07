@@ -27,5 +27,19 @@ def main():
         for record in records:
             print(record)
 
+        print()
+        print("Getting all titles containing 'Superman'")
+        records = comic_database.find_by_title(["%Superman%"])
+
+        for record in records:
+            print(record)
+
+        print()
+        print("Getting all serials with 0001...")
+        records = comic_database.find_by_serial(["0001"])
+
+        for record in records:
+            print(record)
+
 if __name__ == "__main__":
     main()

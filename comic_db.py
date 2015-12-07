@@ -59,3 +59,25 @@ class ComicDatabase(object):
         connection.close()
 
         return tmp
+
+    def find_by_title(self, title):
+        connection = sqlite3.connect(self.comic_db_filename)
+        c = connection.cursor()
+
+        c.execute("SELECT * FROM comics WHERE title LIKE ?", title)
+
+        tmp = c.fetchall()
+        connection.close()
+
+        return tmp
+
+    def find_by_serial(self, serial):
+        connection = sqlite3.connect(self.comic_db_filename)
+        c = connection.cursor()
+
+        c.execute("SELECT * FROM comics WHERE serial = ?", serial)
+
+        tmp = c.fetchall()
+        connection.close()
+
+        return tmp
