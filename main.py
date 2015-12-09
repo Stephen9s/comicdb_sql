@@ -39,28 +39,32 @@ def menu():
             print('{option}: {display}'.format(option=index+1, display=item["display"]))
 
         print()
-        choice = input("Choice: ")
-        choice = int(choice)
-        choice = -1 if choice < 1 else choice - 1
 
-        if choice < 0 or choice >= len(menu_items):
-            pass
-        else:
-            if (menu_items[choice]["parameters"] is not None):
+        try:
+            choice = input("Choice: ")
+            choice = int(choice)
+            choice = -1 if choice < 1 else choice - 1
 
-                print_empty_lines(2)
-
-                menu_items[choice]["function"](
-                    menu_items[choice]["parameters"]()
-                )
-
-                print_empty_lines(2)
+            if choice < 0 or choice >= len(menu_items):
+                pass
             else:
-                print_empty_lines(2)
+                if (menu_items[choice]["parameters"] is not None):
 
-                menu_items[choice]["function"]()
+                    print_empty_lines(2)
 
-                print_empty_lines(2)
+                    menu_items[choice]["function"](
+                        menu_items[choice]["parameters"]()
+                    )
+
+                    print_empty_lines(2)
+                else:
+                    print_empty_lines(2)
+
+                    menu_items[choice]["function"]()
+
+                    print_empty_lines(2)
+        except ValueError:
+            pass
 
 def print_empty_lines(num):
     print("", end = num*"\n")
