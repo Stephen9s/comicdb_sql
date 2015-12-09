@@ -48,23 +48,22 @@ def menu():
         else:
             if (menu_items[choice]["parameters"] is not None):
 
-                print()
-                print()
+                print_empty_lines(2)
 
                 menu_items[choice]["function"](
                     menu_items[choice]["parameters"]()
                 )
 
-                print()
-                print()
+                print_empty_lines(2)
             else:
-                print()
-                print()
+                print_empty_lines(2)
 
                 menu_items[choice]["function"]()
 
-                print()
-                print()
+                print_empty_lines(2)
+
+def print_empty_lines(num):
+    print("", end = num*"\n")
 
 def null_func():
     pass
