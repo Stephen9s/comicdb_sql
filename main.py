@@ -47,19 +47,35 @@ def menu():
             pass
         else:
             if (menu_items[choice]["parameters"] is not None):
+
+                print()
+                print()
+
                 menu_items[choice]["function"](
                     menu_items[choice]["parameters"]()
                 )
+
+                print()
+                print()
             else:
+                print()
+                print()
+
                 menu_items[choice]["function"]()
+
+                print()
+                print()
 
 def null_func():
     pass
 
-def print_records(method):
-    records = method
+def print_records(records):
+
+    print("{0:10s}{title}".format("Universe", title="Title"), end='\n\n')
+
     for record in records:
-        print(record)
+        id, universe, title, serial = list(record)
+        print("{0:10s}{title}".format(universe, title=title))
 
 def main():
     if not fileExists(comic_database.get_comic_database_filename()):
